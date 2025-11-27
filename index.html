@@ -108,15 +108,19 @@
         <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
             <div class="flex items-center gap-3">
                  <!-- Logo -->
+                 <!-- [中文說明] 下行 src 引號內為 Logo 圖片網址 -->
                  <img src="https://raw.githubusercontent.com/milk3462-art/VOX-Music-Bar/main/%E6%88%AA%E5%9C%96%202025-10-17%20%E4%B8%8A%E5%8D%8811.24.39.png" 
                       alt="VOX Music Bar" 
                       class="h-12 w-auto object-contain rounded-md" />
                  <div>
+                    <!-- [中文說明] 下行為店名 -->
                     <h1 className="text-xl font-bold tracking-tight text-white font-serif">VOX Music Bar</h1>
+                    <!-- [中文說明] 下行為店名副標題 Sing & Drink -->
                     <p class="text-[10px] text-gold tracking-[0.2em] uppercase font-serif">Sing & Drink</p>
                  </div>
             </div>
             <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+                <!-- [中文說明] 導覽列連結，可自行修改文字 -->
                 <a href="#" class="hover:text-gold transition-colors">About</a>
                 <a href="#" class="text-gold">Menu</a>
                 <a href="#" class="hover:text-gold transition-colors">Location</a>
@@ -130,8 +134,10 @@
         <h2 id="hero-title" class="text-4xl md:text-6xl font-serif font-bold text-white mb-4 transition-all duration-1000 opacity-0 translate-y-10">
            <span class="text-gold italic"></span>
         </h2>
-        <p id="hero-subtitle" class="text-gray-400 max-w-xl mx-auto text-base md:text-lg transition-all duration-1000 delay-100 opacity-0 translate-y-10">
-            感受精準工藝譜出的風味交響曲，揭開每杯特調獨有的風味秘密。
+        <!-- [中文說明] 副標題文字， text-white 為白色字 -->
+        <p id="hero-subtitle" class="text-white max-w-xl mx-auto text-base md:text-lg transition-all duration-1000 delay-100 opacity-0 translate-y-10">
+            感受精準工藝譜出的風味交響曲，<br> <!-- [中文說明] <br> 代表換行 -->
+            揭開每杯特調獨有的風味秘密。
         </p>
     </header>
 
@@ -144,20 +150,22 @@
 
     <!-- Footer -->
     <footer class="mt-20 border-t border-white/5 py-10 text-center">
+        <!-- [中文說明] 頁尾版權文字 -->
         <p class="text-gray-500 text-sm">© 2024 Vox Music Bar. Please drink responsibly.</p>
     </footer>
 
     <!-- Application Logic -->
     <script>
         // --- Data ---
+        // [中文說明] 在此處修改酒單內容
         const COCKTAILS = [
           {
             id: "1",
-            name: "多多綠",
-            price: 350,
-            ingredients: ["琴酒 (Gin)", "綠茶風味萃取 (Green Tea)", "養樂多風味萃取 (Yakult)"],
-            flavors: { "濃度": 1, "酸感": 2, "甜感": 2, "茶感": 1 },
-            image: "https://raw.githubusercontent.com/milk3462-art/VOX-Music-Bar/main/1.png" 
+            name: "多多綠", // [中文說明] 酒名
+            price: 350,    // [中文說明] 價格
+            ingredients: ["琴酒 (Gin)", "綠茶風味萃取 (Green Tea)", "養樂多風味萃取 (Yakult)"], // [中文說明] 成分列表
+            flavors: { "濃度": 1, "酸感": 2, "甜感": 2, "茶感": 1 }, // [中文說明] 風味數值 (1-5)
+            image: "https://raw.githubusercontent.com/milk3462-art/VOX-Music-Bar/main/1.png" // [中文說明] 圖片網址
           },
           {
             id: "2",
@@ -248,6 +256,7 @@
          }
         ];
 
+        // [中文說明] 風味標籤的中英文對照，可自行修改英文
         const FLAVOR_LABELS = {
           "濃度": "Strength",
           "酸感": "Sourness",
@@ -272,11 +281,15 @@
                 const title = document.getElementById('hero-title');
                 const subtitle = document.getElementById('hero-subtitle');
                 
-                title.classList.remove('opacity-0', 'translate-y-10');
-                title.classList.add('opacity-100', 'translate-y-0');
+                if(title) {
+                  title.classList.remove('opacity-0', 'translate-y-10');
+                  title.classList.add('opacity-100', 'translate-y-0');
+                }
                 
-                subtitle.classList.remove('opacity-0', 'translate-y-10');
-                subtitle.classList.add('opacity-100', 'translate-y-0');
+                if(subtitle) {
+                  subtitle.classList.remove('opacity-0', 'translate-y-10');
+                  subtitle.classList.add('opacity-100', 'translate-y-0');
+                }
             }, 100);
         }
 
@@ -362,6 +375,7 @@
         // --- Grid Rendering ---
         function renderGrid() {
             const grid = document.getElementById('cocktail-grid');
+            if (!grid) return;
             grid.innerHTML = '';
 
             COCKTAILS.forEach((cocktail, index) => {
@@ -381,7 +395,8 @@
                     return `
                         <div class="flex items-center justify-between py-1 border-b border-white/5 last:border-0">
                             <div class="flex flex-col">
-                                <span class="text-gray-300 text-xs font-medium">${key}</span>
+                                <!-- [中文說明] 下方 text-base 為控制風味名稱大小 (原本是 text-sm) -->
+                                <span class="text-gray-300 text-base font-medium">${key}</span>
                                 <span class="text-[9px] text-gray-500 uppercase">${englishLabel}</span>
                             </div>
                             <div class="flex gap-0.5">${iconsHtml}</div>
@@ -395,6 +410,7 @@
                 ).join('');
 
                 // Card HTML
+                // [中文說明] 下方 HTML 為卡片結構
                 cardContainer.innerHTML = `
                     <div class="relative h-full flex flex-col rounded-3xl bg-[#141414] border border-white/5 overflow-hidden shadow-lg transition-transform duration-300 hover:border-gold/30 hover:-translate-y-1 hover:shadow-gold/10">
                         <!-- Image -->
@@ -415,7 +431,8 @@
                         <div class="p-5 flex flex-col flex-1 gap-5">
                             <!-- Header -->
                             <div>
-                                <h3 class="text-2xl font-serif font-bold text-white mb-2">${cocktail.name}</h3>
+                                <!-- [中文說明] 酒名設定：text-[20px]為字體大小(原為text-[22px]), mb-5為下方距離(原為mb-3) -->
+                                <h3 class="text-[20px] font-serif font-bold text-white mb-5">${cocktail.name}</h3>
                                 <div class="flex flex-wrap gap-1.5">
                                     ${ingredientsHtml}
                                 </div>
